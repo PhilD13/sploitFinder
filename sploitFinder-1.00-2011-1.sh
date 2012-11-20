@@ -3,8 +3,10 @@
 # Version:   1.00
 # Date:      4th February 2011 (Originally released 5th September 2006)
 # Author:    Network SMARTS, Queensland. Australia
-# Contact:   Joomla! Forums - RussW
+# Origional Contact: Joomla! Forums - RussW
+# Maintainer Contact: Joomla! Forums - PhilD
 # FileName:  sploitFinder.sh
+# File Location: https://github.com/PhilD13/sploitFinder
 # ----------------------------------------------------------------------------
 # sploitFinder: list possible exploit scripts and optionally email output
 #
@@ -26,6 +28,18 @@
 ###############################################################################
 
 
+###############################################################################
+# The sploitFinder comes with ABSOLUTELY NO WARRANTY. This is free software, 
+# and covered under the GNU GPLv3 or later license. You are welcome to redistribute
+# and/or modify it under under the terms of the GNU General Public License as 
+# published by the Free Software Foundation.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or 
+# FITNESS FOR A PARTICULAR PURPOSE. For details read the LICENSE.txt file included 
+# in the download package with this script. Or see the GNU General Public License 
+# at http://www.gnu.org/licenses/for more details.
+###############################################################################	
 
 ###############################################################################
 # VARIABLES THAT NEED CHANGING BEFORE RUNNING
