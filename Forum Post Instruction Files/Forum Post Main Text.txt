@@ -1,0 +1,67 @@
+Ok folks,
+
+Following a rather lengthy and fruitless discussion regarding some very old shell exploits on the developer mail-lists by upset and exploited user, I decided to update and re-issue my old "[b][i]sploitFinder[/i]" shell script[/b] [i](originally posted in the J!1.0 Security Forums in September of 2006)[/i] in the hope that it may be of use to some again.
+
+[quote]
+[b]IMPORTANT NOTICE[/b]
+[color=#800000][b]This script is a Unix SHELL SCRIPT and not useful for everybody.[/b][/color] 
+If you host on Windows or do not have Unix/Linux SSH/Shell access to you host, you will not be able to make use of it. However....
+
+[color=#000080][b]PHP Developers[/b]
+If any smart-cookie PHP Developer would like to convert this from a shell script to either a standalone, single user, browser ready php script or a Joomla! Extension, feel free to go for it.[/color]
+[/quote]
+
+[b]Information/Overview:[/b]
+A reasonably effective script to search for particular known patterns within .php and .cgi files that [i]MAY[/i] present exploit capabilities. 
+
+[attachment=0]sploitFinder-1.00-2011.sh.txt[/attachment]
+
+
+The simple logic is by [b]no means "[i]fool proof[/i]"[/b] or "[i]exhaustive[/i]" but gives a reasonably good indication that the target script maybe part of an exploit set. False positives are extremely possible due to the fact that many valid scripts make use of the same logic/technologies to acheive required activities, therefore some "human intelligence" must be applied to the final reports.
+
+[b]Installation:[/b]
+
+  1) FTP/Copy sploitFinder.sh.txt to your server
+  2) Rename to either sploitFinder.sh or just sploitFinder
+  3) Make the file executable [i](chmod 755 sploitFinder)[/i] or run "sh sploitFinder.sh"
+  4) READ the comments and instructions in the file [i](it is fully documented)[/i]
+  5) run it to test with all the different switches, setup crons etc etc
+
+
+  [b]sploitFinder[/b]: [i]list possible exploit scripts and optionally email output[/i]
+    [b]Usage:[/b] [i]./sploitFinder(.sh) [-a] [-c] [-m ] [egrep pattern][/i]
+              -m : email output to instead of writing to stdout
+              -a : shows all files not just changes since last run
+              -c : shows matching lines with context
+              -r : reset/delete history
+
+
+The script is well commented, only a couple of internal variables to be configured and select your command line execution switches.
+
+[b]Configuration:[/b]
+
+    [b]searchpath[/b]=/home  (Default : /home)
+    [b]sploitdir[/b]=/sploitFind  (Default : none)
+
+
+This is the search pattern criteria. Listed are some of the signitures of some exploits we have heard of, these ARE NOT exhaustive. Obviously, the more variables there are, the longer each run will take.
+
+      [b]sploitpattern[/b]='r0nin|m0rtix|upl0ad|r57shell|c99shell|shellbot|phpshell|void\.ru|phpremoteview|directmail|bash_history|\.ru/|brute *force|multiviews|cwings|vandal|bitchx|eggdrop|guardservices|psybnc|dalnet|undernet|vulnscan|spymeta|raslan58|Webshell'
+
+[i](Feel free to post additions to the sploitpattern to enhance the scripts capability and share your experience and knowledge.!)[/i]
+
+
+This script may be run adhoc if prefered, another option is via crom, for example: TWO regular cron jobs.
+
+  The first cron runs every 4 hours on Monday through Sunday at 02.10hrs, 06.10hrs, 10.10hrs, 14.10hrs, 18.10hrs & 22.10hrs
+    - Showing only new files since the previous run and mailing the report
+
+  The second cron runs once a week on Sunday at 01.10hrs
+    - Resets/rebuilds the Baseline and mails out a full report of ALL files (-a implied)
+
+EG:
+  10 2,6,10,14,18,22 * * * //sploitFinder.sh -m your@emailaddress.com.au >& /dev/null
+  10 1 * * 0 //sploitFinder.sh -rm your@emailaddress.com >& /dev/null
+
+
+[i]As ever, This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY or support; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.[/i]
